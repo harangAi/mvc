@@ -70,9 +70,9 @@ public class BasicController {
 
     // 3.커맨트객체 활용하기
     @PostMapping("/req/v3")
-    public String v3(Pet petInfo) {
+    public String v3(Pet petInfo, Model model) {
+        model.addAttribute("p", petInfo);
         log.info(petInfo);
-
         return "req_ex/pet_info";
     }
 
@@ -87,5 +87,19 @@ public class BasicController {
         return "req_ex/result";
     }
 
+    @GetMapping("/req/req_quiz")
+    public String quiz_v() {
+        return "req_ex/req_quiz";
+    }
+
+    @PostMapping("/req/quiz")
+    public String quiz(String userAccount, String userPassword, Model model) {
+        model.addAttribute("account", userAccount);
+        if (userAccount.equals("kim123") && userPassword.equals("kkk1234")) {
+            return "req_ex/success";
+        } else {
+            return "req_ex/fail";
+        }
+    }
 
 }
