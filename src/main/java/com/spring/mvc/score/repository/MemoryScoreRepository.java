@@ -14,6 +14,14 @@ import java.util.Map;
 public class MemoryScoreRepository implements ScoreRepository{
     // 실제 메모리 저장소
     private Map<Integer, Score> scoreMap = new HashMap<>();
+    // 초기 데이터
+
+
+    public MemoryScoreRepository() {
+        scoreMap.put(1, new Score("뽀로로", 89, 92, 88));
+        scoreMap.put(2, new Score("김철수", 77, 34, 41));
+        scoreMap.put(3, new Score("박영희", 86, 54, 58));
+    }
 
     @Override
     public boolean save(Score score) {
@@ -34,11 +42,12 @@ public class MemoryScoreRepository implements ScoreRepository{
 
     @Override
     public Score findOne(int stuNum) {
-        return null;
+        return scoreMap.get(stuNum);
     }
 
     @Override
     public boolean remove(int stuNum) {
+        scoreMap.remove(stuNum);
         return false;
     }
 }
