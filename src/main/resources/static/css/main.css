@@ -26,6 +26,7 @@ header {
     width: 100%;
     /* background: red; */
     position: fixed;
+    top: 0;
     z-index: 100;
 }
 
@@ -118,7 +119,7 @@ header .gnb ul li:hover {
     color: #fff;
 }
 
-/* index를 제외한 header */
+/* index제외한 header */
 header.common {
     background: #1b1b1b;
 }
@@ -363,7 +364,8 @@ section.contents .contact .inner .tel {
 footer {
     background: #1b1b1b;
     color: #999;
-    padding: 0 80px 80px;
+    padding: 80px 80px;
+    margin-top: 300px;
 }
 footer ul {
     display: flex;
