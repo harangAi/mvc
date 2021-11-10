@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class JDBCBasicCRUD {
     //DB 접속 정보 설정
@@ -80,6 +81,28 @@ public class JDBCBasicCRUD {
             }
             Assertions.assertTrue(resultNum == 1);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    @DisplayName("product데이터를 전체 조회해야 한다.")
+    void findAllTest() {
+        try(Connection connection = DriverManager.getConnection(url, id, pw)) {
+            Class.forName(driver);
+            String sql = "SELECT * FROM product";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            //SQL 실행명령
+            //1. INSERT, UPDATE, DELETE : executeUpdate()
+            //2. SELECT : executeQuery()
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next()){
+                String product_name = resultSet.getString("product_name");
+                int product_price = resultSet.getInt("product_price");
+                System.out.printf("제품명: %s, 가격: %d원\n", product_name, product_price);
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
